@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Form</title>
+
+        <!-- CSS -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Blog -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <!-- JavaScript -->
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('entries') }}">PA Cyber</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <form class="form-signin">       
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <input type="text" class="form-control" name="site_location" placeholder="site_location" required="" autofocus="" /> 
+                <input type="text" class="form-control" name="student_id" placeholder="Student ID (example: js154211)" required="" autofocus="" />
+                <input type="text" class="form-control" name="student_first_name" placeholder="student_first_name" required="" autofocus="" />
+                <input type="text" class="form-control" name="student_last_name" placeholder="student_last_name" required="" autofocus="" /> 
+                <input type="text" class="form-control" name="parent_first_name" placeholder="parent_first_name" autofocus="" /> 
+                <input type="text" class="form-control" name="parent_last_name" placeholder="parent_last_name" autofocus="" />  
+                <input type="text" class="form-control" name="phone_number" placeholder="phone_number" required="" autofocus="" /> 
+                <input type="text" class="form-control" name="alt_number" placeholder="alt_number"  autofocus="" /> 
+                <input type="text" class="form-control" name="notes" placeholder="notes"  autofocus="" /> 
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>   
+            </form>
+        </div>    
+    </body>
+</html>
+
