@@ -1,0 +1,14 @@
+{% macro render_entry(entry) %}
+<div class="row">
+    <div class="col-md-12 text-right metadata">
+        <ul class="list-unstyled">
+            <li>
+            {{ entry.site_location }}, {{ entry.student_id}},  {{ entry.student_name }},
+            {{ entry.parent_name }}, {{ entry.phone_number }}, {{ entry.alt_number }},
+            {{ entry.notes }}, {{ entry.datetime | dateformat("%m/%d/%y") }}
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endmacro %}

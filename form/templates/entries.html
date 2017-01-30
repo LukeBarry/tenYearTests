@@ -1,17 +1,9 @@
-<div class="row">
-    <div class="col-md-2 text-right metadata">
-        <ul class="list-unstyled">
-            <li>
-                 {{ entry.site_location }}
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-10">
-        <h1>
-            {{ entry.student_id}}  {{ entry.student_name }}
-            {{ entry.parent_name }} {{ entry.phone_number }} {{ entry.alt_number }}
-            {{ entry.notes }} {{ entry.datetime | dateformat("%m/%d/%y") }}
-        </h1>
-    </div> 
-</div>
+{% import "macros.html" as macros %}
 
+{% block content %}
+{% for entry in entries %}
+{{ macros.render_entry(entry) }}
+
+{% endfor %}
+
+{% endblock %}
