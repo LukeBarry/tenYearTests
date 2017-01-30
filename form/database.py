@@ -14,18 +14,16 @@ session = Session()
 
 class Entry(Base):
     __tablename__ = "entries"
-
-    student_id = Column(String, primary_key=True)
-    student_first_name = Column(String(1024))
-    student_last_name = Column(String(1024))
-    parent_first_name = Column(String(1024))
-    parent_last_name = Column(String(1024))
-    site_location = Column(String(1024))   
-    phone_number = Column(Integer)
-    alt_number = Column(Integer)
+    id = Column(Integer, primary_key=True)
+    student_id = Column(String(1024))
+    student_name = Column(String(1024))
+    parent_name = Column(String(1024))
+    site_location = Column(String(1024))  
+    phone_number = Column(String(1024)) 
+    alt_number = Column(String(1024)) 
     notes = Column(Text)
     datetime = Column(DateTime, default=datetime.datetime.now)
     
-
+# Base.metadata.drop_all(engine) # learn about migrations
 Base.metadata.create_all(engine)
 

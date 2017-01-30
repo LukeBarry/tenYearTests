@@ -5,3 +5,10 @@ flask-script
 flask-migrate
 mistune
 psycopg2
+flask
+sqlalchemy
+flask-login
+flask-script
+flask-migrate
+mistune
+psycopg2

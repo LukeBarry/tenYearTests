@@ -1,0 +1,16 @@
+this code in the command line allows me to look at the form entries on the back end.
+
+psql form 
+form-# table entries
+form-# ;
+
+This code allowed me to restart the database
+# Base.metadata.drop_all(engine) # learn about migrations
+
+this code checks the heroku logs
+# Heroku logs
+
+gunicorn is needed in requirements to deploy to heroku
+git commit -am "Add gunicorn to requirements"
+
+pip install the requirements after adding new things to the requiremnets text and then run heroku again

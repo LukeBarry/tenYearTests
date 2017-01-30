@@ -10,7 +10,7 @@
         <!-- CSS -->
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <!-- Blog -->
+        <!-- Form -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
         <!-- JavaScript -->
@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url_for('entries') }}">PA Cyber</a>
+                    <a class="navbar-brand" href="http://www.pacyber.org" target="_blank">PA Cyber</a>    
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -38,22 +38,26 @@
                 </div>
             </div>
         </div>
-
+        <h1 align="center"> Welcome to PA Cyber </h1> 
         <div class="wrapper">
-            <form class="form-signin">       
-                <h2 class="form-signin-heading">Please sign in</h2>
+            <form class="form-signin" method="POST">       
+                <h2 align="center" class="form-signin-heading">Please sign in</h2>
                 <input type="text" class="form-control" name="site_location" placeholder="site_location" required="" autofocus="" /> 
                 <input type="text" class="form-control" name="student_id" placeholder="Student ID (example: js154211)" required="" autofocus="" />
-                <input type="text" class="form-control" name="student_first_name" placeholder="student_first_name" required="" autofocus="" />
-                <input type="text" class="form-control" name="student_last_name" placeholder="student_last_name" required="" autofocus="" /> 
-                <input type="text" class="form-control" name="parent_first_name" placeholder="parent_first_name" autofocus="" /> 
-                <input type="text" class="form-control" name="parent_last_name" placeholder="parent_last_name" autofocus="" />  
-                <input type="text" class="form-control" name="phone_number" placeholder="phone_number" required="" autofocus="" /> 
+                <input type="text" class="form-control" name="student_name" placeholder="student_name" required="" autofocus="" /> 
+                <input type="text" class="form-control" name="parent_name" placeholder="parent_name" autofocus="" />  
+                <input type="text" class="form-control" name="phone_number" placeholder="phone_number"  autofocus="" /> 
                 <input type="text" class="form-control" name="alt_number" placeholder="alt_number"  autofocus="" /> 
                 <input type="text" class="form-control" name="notes" placeholder="notes"  autofocus="" /> 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>   
             </form>
         </div>    
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+        
+        
+
     </body>
 </html>
 
