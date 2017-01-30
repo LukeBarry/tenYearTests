@@ -14,3 +14,55 @@ gunicorn is needed in requirements to deploy to heroku
 git commit -am "Add gunicorn to requirements"
 
 pip install the requirements after adding new things to the requiremnets text and then run heroku again
+
+                                                    HEROKU SLACK NOTES          
+
+
+you may need to add a proc file
+
+[3:12]  
+or run `heroku ps:scale web=1`
+
+[3:13]  
+ProcFile should have something like this in it `web:gunicorn app:app`
+
+michaelherman-mentor [3:46 PM] 
+you need to update your git remote
+
+[3:46]  
+run: `git remote -v` (edited)
+
+rosuav [3:50 PM] 
+`origin` should be your GitHub
+
+rosuav [3:56 PM] 
+You can change the bit before `herokuapp`, but I'm more concerned that you're trying to push to a git:// URI
+
+michaelherman-mentor [3:59 PM] 
+just run -> `heroku git:remote -a fathomless-wildwood-38605` to set the proper remote
+
+rosuav [4:00 PM] 
+Will that work? The docs say it will _add_  a remote, but not necessarily change one.
+
+[4:00]  
+Anyway, I would be inclined to try an HTTPS push.
+ 
+`git remote set-url heroku https://git.heroku.com/fathomless-wildwood-38605.git`
+
+rosuav [4:03 PM] 
+Then push.
+
+[4:08]  
+Apparently your requirements.txt specifies something that can't be found. What are you using of BzrTools? How did you install it?
+
+[4:08]  
+Do you specifically need version 2.6.0?
+
+coolhand_luke [4:11 PM] 
+added this Plain Text snippet: here is what is in the requirements file.  BzrTools?
+Flask==0.12
+Flask-Login==0.4.0
+Flask-Migrate==2.0.2
+Flask-SQLAlchemy==2.1
+Flask-Script==2.0.5
+Add Comment Click to expand inline 17 lines
