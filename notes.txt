@@ -65,8 +65,7 @@ source env/bin/activate	activate the virtual environment
 pip install flask	install flask
 git remote rm origin	cleared the heoku apps. I had two running
 git remote rm heroku	cleared the heoku apps. I had two running
-touch.gitignore	
-env	
+touch.gitignore	        creates an ignore file.  I put notes and the env in the file
 git add .	
 git commit -m	
 heroku create	
