@@ -7,7 +7,7 @@ from sqlalchemy import Column, Integer, String, Text, DateTime
 
 from . import app
 
-engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"])
+engine = create_engine(app.config["DATABASE_URL"])
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
