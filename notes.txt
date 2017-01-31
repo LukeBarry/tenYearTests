@@ -1,68 +1,135 @@
-this code in the command line allows me to look at the form entries on the back end.
+Building a blog file order	
+init.py	                    I fire up the development server, import Flask, create the app object
+manage.py	                    This file will contain a series of commands (like app.run) intended to help me as I develop the application
+config.py	                    Now that the app is running, I manage the configuration of the app. I set the location of the database and I set up flask's debug method.
+init.py	                    Next, I load the configuration into the  _init__.py file
+database.py	                    Now that the app is configured, I setup a connection to the database where I will be storing the blog entries.
+Above is everything I need for the project configured.  Next I use the structure I've built to start constructing the blog engine.	
+database.py	                    Create a SQLAlchemy model (create the columns and table) which I will use to store and retrieve blog entries.
+manage.py	                    Add a task to my manage.py file which will generate a series of entries.  (from blog.database import session, Entry) and a for loop
+views.py	                    Now I can build the views and templates to allow me to display them.  First design a simple view allowing me to see all the entries.
+base.html	                    Fairly standard bootstrap template. Static navbar at the top and a content block below that. There's a css file called main.css which is served from the static/css directory.
+main.css	                    add in a css rule to the base.py file which will add some basic styling to the entries
+macros.html	                    Next I need to render the entries. Because there are a number of places where I might want to render an entry, I use a jinja macro. 
+filters.html	                    Jinja doesn't include the filters used in the macros.html file by default, so I need to add code to the filters.py file
+entries.html	                    The final step to viewing the entries is to actually add the entries.html  template
+add_entry.html	                    Here you create a new route, /page/<int:page> designed to take you to a specific page of content
+Next up is building Authentication using Flask-login	
+config.py	                    Add the Secret_key to config. The SECRET_KEY is used to cryptographically secure your application's sessions
+database.py	                    Create a SQLAlchemy model (create the columns and table) for the authentication table
+manage.py	                    Next I add a user to the database which I can use to test that the login system is working
+login.py	                    Set up a login system
+init.py	                    incorporate the new code into the application
+views.py	                    Create the login_get view which we referred to earlier
+login.html	                    the login html that accompanies the login page
+views.py	                    Create the login_POST view
+base.html	                    show the wrong username and password message from the login_user view
+views.py	                    add the @login_required decorator to the add entry function so that others can not add entries or edit my blog
+Next up is managing database migrations using Flask-Migrate in order to add to access two tables in our database.py file and add an author column to both tables	
+manage.py	                    The first step is to add the migration management commands to the manage.py file
+migrations folder	                    python manage.py db init runs the db init command and creates the migrations folder
+database.py	                    Add a foregin key and relationship command from sqlAlchemy to the database file and then add the author_id column and the entries(relationship) column to the appropriate tables.  This goes back to the lesson on relationships between classes.
+migrations/versions folder	                    python manage.py db migrate creates a migration script and a new file in the m/v folder. The new file contains an upgrade and downgrade the database function.
+views.py	                    update the add_entry_post function to assign the logged in user as the author of the entry
+macros.html	                    add {{ entry.author.name }} to the meta data div in the render_entry macro
+final note	                    At this point it is simple to continue working with migrations. Each time you make changes to the database you should run python manage.py db migrateto generate a migration script. If the script looks correct then python manage.py db upgrade will apply the changes. If you need to roll back changes at any point then python manage.py downgrade will reverse a migration. And that's all there is to managing a changing database schema.
+Testing blogful	
+test_filter.py	                    create a file to hold the tests
+config.py	                    create a testingconfig class to give me a separate database URI for testing
+test_views_integration.py	                    Write an integration test for the add_entry_post view
+test_views_acceptance.py	                    install splinter and phantomjs. Create acceptance tests to test that everything is working well from the user point of view
 
+
+                                                   NOTES FROM MENTOR SESSIONS
+                                                   
+this code in the command line allows me to look at the form entries on the back end.
 psql form 
 form-# table entries
 form-# ;
-
 This code allowed me to restart the database
 # Base.metadata.drop_all(engine) # learn about migrations
-
 this code checks the heroku logs
 # Heroku logs
-
 gunicorn is needed in requirements to deploy to heroku
 git commit -am "Add gunicorn to requirements"
-
 pip install the requirements after adding new things to the requiremnets text and then run heroku again
+python manage.py run	calls the run function which launches the development server from the manage file
+	
+sudo apt-get update	when I create a virtual environment and get the error telling me to use apt-get install python3-venv
+sudo apt-get upgrade	I can use these 3 lines to get past the error
+sudo apt-get install python3.4-venv	I may not need to upgrade
+	
+sudo service postgresql start	start the postgres server
+python3 -m venv env	create a virtual environment
+source env/bin/activate	activate the virtual environment
+pip install flask	install flask
+git remote rm origin	cleared the heoku apps. I had two running
+git remote rm heroku	cleared the heoku apps. I had two running
+touch.gitignore	
+env	
+git add .	
+git commit -m	
+heroku create	
+git remote -v	
+git push heroku master	
+heroku logs	shows me what errors may have occurred
+
+                                            REAL PYTHON PART8 DEPLOYING TO HEROKU
+
+heroku login
+pip install Flask gunicorn
+pip install Flask gunicorn --upgrade    ----for latest versions
+gunicorn -b 127.0.0.1:4000 form:form      ----test out your application locally on a gunicorn server -b binds, 127.0.0.1 is the local host, 
+4000 is the port.  form is the project, and form is the app name 
+echo 'web: gunicorn appname:app --log-file=-' > Procfile     ----creates the procfile 
+foreman check   ----checks the profile to make sure valid
+foreman start    -----check the guincorn server
+pip freeze > requirements.txt    ----this will create a requirements file or update a requiremnets file
+pip freeze -----will show the dependencies requirements
+touch .gitignore  ---- creates a file which I can add files to for git to ignore incase I don't won't certain file going to open source
+teacher .gitignored venv *.pyc *.db
+git init
+git add .
+git commit -m "message"
+heroku create pacyber-form ----creates the app and specifies the name "flask-intro"
+heroku open ----shows the app
+git push heroku master ----takes the contents of the local repository andpushes it to heroku
+heroku ps:scale web=1 ----specific to heroku, tells heroku to run web command from procfile
+heroku ps - checks the current running processes
+heroku ---- help menu, list of commands
+heroku run python test.py -v  ----this runs the test file
+
+                                            REAL PYTHON PART10 Configuration
+                                            
+                                            
+
+
+
+
 
                                                     HEROKU SLACK NOTES          
 
 
 you may need to add a proc file
-
 [3:12]  
 or run `heroku ps:scale web=1`
-
 [3:13]  
 ProcFile should have something like this in it `web:gunicorn app:app`
-
 michaelherman-mentor [3:46 PM] 
 you need to update your git remote
-
 [3:46]  
 run: `git remote -v` (edited)
-
 rosuav [3:50 PM] 
 `origin` should be your GitHub
-
 rosuav [3:56 PM] 
 You can change the bit before `herokuapp`, but I'm more concerned that you're trying to push to a git:// URI
-
 michaelherman-mentor [3:59 PM] 
 just run -> `heroku git:remote -a fathomless-wildwood-38605` to set the proper remote
-
 rosuav [4:00 PM] 
 Will that work? The docs say it will _add_  a remote, but not necessarily change one.
-
 [4:00]  
 Anyway, I would be inclined to try an HTTPS push.
- 
-`git remote set-url heroku https://git.heroku.com/fathomless-wildwood-38605.git`
-
+ `git remote set-url heroku https://git.heroku.com/fathomless-wildwood-38605.git`
 rosuav [4:03 PM] 
 Then push.
 
-[4:08]  
-Apparently your requirements.txt specifies something that can't be found. What are you using of BzrTools? How did you install it?
-
-[4:08]  
-Do you specifically need version 2.6.0?
-
-coolhand_luke [4:11 PM] 
-added this Plain Text snippet: here is what is in the requirements file.  BzrTools?
-Flask==0.12
-Flask-Login==0.4.0
-Flask-Migrate==2.0.2
-Flask-SQLAlchemy==2.1
-Flask-Script==2.0.5
-Add Comment Click to expand inline 17 lines

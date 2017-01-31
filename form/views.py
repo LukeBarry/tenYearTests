@@ -3,7 +3,7 @@ from . import app
 from .database import session, Entry
 from flask import request, redirect, url_for
 
-@app.route("/view")
+@app.route("/chief45scores")
 def entries():
     entries = session.query(Entry)
     entries = entries.order_by(Entry.datetime.desc())
@@ -33,12 +33,12 @@ def add_entry_post():
     return redirect("/")
 
 
-@app.route("/view", methods=["GET"])
+@app.route("/chief45scores", methods=["GET"])
 def view():
     return render_template("entries.html")
     
 
-@app.route("/view", methods=["POST"])
+@app.route("/chief45scores", methods=["POST"])
 def view_post():
     entry = Entry(
         student_id=request.form["student_id"],
@@ -52,7 +52,7 @@ def view_post():
     )
     session.add(entry)
     session.commit()
-    return redirect("/view")  
+    return redirect("/chief45scores")  
 
   
   
