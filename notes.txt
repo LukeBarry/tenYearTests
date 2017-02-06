@@ -39,6 +39,10 @@ config.py	                    create a testingconfig class to give me a separate
 test_views_integration.py	                    Write an integration test for the add_entry_post view
 test_views_acceptance.py	                    install splinter and phantomjs. Create acceptance tests to test that everything is working well from the user point of view
 
+JQuery, Redux, React, Jason
+
+
+
 
                                                    NOTES FROM MENTOR SESSIONS
                                                    
