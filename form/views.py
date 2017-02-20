@@ -6,7 +6,6 @@ from flask import request, redirect, url_for
 @app.route("/chief45scores")
 def entries():
     entries = session.query(Entry)
-    entries = entries.order_by(Entry.datetime.desc())
     entries = entries.all()
     return render_template("entries.html", entries=entries)
 
@@ -18,9 +17,7 @@ def add_entry_get():
 def add_entry_post():
     entry = Entry(
         student_id=request.form["student_id"],
-
         student_name=request.form["student_name"],
-       
         parent_name=request.form["parent_name"],
         site_location=request.form["site_location"],
         phone_number=request.form["phone_number"],

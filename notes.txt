@@ -48,8 +48,12 @@ JQuery, Redux, React, Jason
                                                    
 this code in the command line allows me to look at the form entries on the back end.
 psql form 
-form-# table entries
-form-# ;
+form-# table entries;
+
+
+
+
+
 This code allowed me to restart the database
 # Base.metadata.drop_all(engine) # learn about migrations
 this code checks the heroku logs
@@ -59,17 +63,17 @@ git commit -am "Add gunicorn to requirements"
 pip install the requirements after adding new things to the requiremnets text and then run heroku again
 python manage.py run	calls the run function which launches the development server from the manage file
 	
-sudo apt-get update	when I create a virtual environment and get the error telling me to use apt-get install python3-venv
+sudo apt-get update	    when I create a virtual environment and get the error telling me to use apt-get install python3-venv
 sudo apt-get upgrade	I can use these 3 lines to get past the error
-sudo apt-get install python3.4-venv	I may not need to upgrade
+sudo apt-get install    python3.4-venv	I may not need to upgrade
 	
 sudo service postgresql start	start the postgres server
-python3 -m venv env	create a virtual environment
-source env/bin/activate	activate the virtual environment
-pip install flask	install flask
-git remote rm origin	cleared the heoku apps. I had two running
-git remote rm heroku	cleared the heoku apps. I had two running
-touch.gitignore	        creates an ignore file.  I put notes and the env in the file
+python3 -m venv env	            create a virtual environment
+source env/bin/activate	       activate the virtual environment
+pip install flask	           install flask
+git remote rm origin	       cleared the heoku apps. I had two running
+git remote rm heroku	       cleared the heoku apps. I had two running
+touch.gitignore	               creates an ignore file.  I put notes and the env in the file
 git add .	
 git commit -m	
 heroku create	
